@@ -2,7 +2,8 @@
 We all know how ATM machines work… don’t we? You are tasked with developing software for one that: 
 - should initialize with the following accounts: 
 - Account Number PIN Opening Balance Overdraft 
-- 123456789 1234 800 200 987654321 4321 1230 150 
+- 123456789 1234 800 200 
+- 987654321 4321 1230 150 
 - should initialize with €1500 made up of 10 x €50s, 30 x €20s, 30 x €10s and 20 x €5s 
 - should not dispense funds if the pin is incorrect, 
 - cannot dispense more money than it holds, 
