@@ -53,12 +53,42 @@ public class AccountService {
 
 
 	public boolean IsThereAccountFunds(int ans) {
-		if(ans <= signedInAccount.getBalance()) {
+		double amount = signedInAccount.getBalance() + signedInAccount.getOverdraft();
+		if(ans <= amount) {
 			return true;
 		}
 		else {
 			return false;
 		} 
+	}
+
+
+	public void Withdrawal(int withdraw) {
+		if(withdraw <= signedInAccount.getBalance()) {
+			double ans = signedInAccount.getBalance() - withdraw;
+			signedInAccount.setBalance(ans);
+		}
+		else {
+			signedInAccount.setBalance(0);
+			double ans = withdraw - signedInAccount.getBalance();
+			double ans2 = signedInAccount.getOverdraft() - ans;
+			signedInAccount.setOverdraft(ans2);
+		}
+		
+	}
+
+
+	public String viewAccount() {
+		return signedInAccount.showAccount();
+	}
+
+
+	public void signOutOfAccount() {
+		signedInAccount = null;
+	}
+	
+	public String showBalance() {
+		return signedInAccount.showBalance();
 	}
 
 }

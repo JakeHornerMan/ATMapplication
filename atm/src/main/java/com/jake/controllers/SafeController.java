@@ -17,5 +17,11 @@ public class SafeController {
 	public boolean checkSafe(int ans) {
 		return safeService.IsThereSufficiantFundsInSafe(ans);
 	}
+
+	public String getNotes(int ans) {
+		return safeService.calulateNotes(ans);
+	}
+
+	
 	
 }

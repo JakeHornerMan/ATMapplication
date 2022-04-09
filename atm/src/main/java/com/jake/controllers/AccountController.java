@@ -27,4 +27,20 @@ public class AccountController {
 		return accountService.IsThereAccountFunds(ans);
 	}
 
+	public void takeAwayWithdrawal(int ans) {
+		accountService.Withdrawal(ans);
+	}
+
+	public String getAccount() {
+		return accountService.viewAccount();
+	}
+
+	public void signOut() {
+		accountService.signOutOfAccount();
+	}
+
+	public String getBalance() {
+		return accountService.showBalance();
+	}
+
 }

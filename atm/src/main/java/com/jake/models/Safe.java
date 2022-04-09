@@ -2,37 +2,17 @@ package com.jake.models;
 
 public class Safe {
 
-	public int twoHundreds;
-	public int hundreds;
 	public int fiftys;
 	public int twentys;
 	public int tens;
 	public int fives;
 	
-	public Safe(int twoHundreds, int hundreds, int fiftys, int twentys, int tens, int fives) {
+	public Safe(int fiftys, int twentys, int tens, int fives) {
 		super();
-		this.twoHundreds = twoHundreds;
-		this.hundreds = hundreds;
 		this.fiftys = fiftys;
 		this.twentys = twentys;
 		this.tens = tens;
 		this.fives = fives;
-	}
-
-	public int getTwoHundreds() {
-		return twoHundreds;
-	}
-
-	public void setTwoHundreds(int twoHundreds) {
-		this.twoHundreds = twoHundreds;
-	}
-
-	public int getHundreds() {
-		return hundreds;
-	}
-
-	public void setHundreds(int hundreds) {
-		this.hundreds = hundreds;
 	}
 
 	public int getFiftys() {
@@ -69,7 +49,7 @@ public class Safe {
 
 	@Override
 	public String toString() {
-		return "Safe [twoHundreds=" + twoHundreds + ", hundreds=" + hundreds + ", fiftys=" + fiftys + ", twentys="
+		return "Safe [fiftys=" + fiftys + ", twentys="
 				+ twentys + ", tens=" + tens + ", fives=" + fives + "]";
 	}
 	
@@ -79,7 +59,7 @@ public class Safe {
 	}
 	
 	public int TotalInSafe() {
-		int ans = (twoHundreds*200) + (hundreds*100) + (fiftys*50) + (twentys*20) + (tens*10) + (fives*5);
+		int ans = (fiftys*50) + (twentys*20) + (tens*10) + (fives*5);
 		return ans;
 	}
 }

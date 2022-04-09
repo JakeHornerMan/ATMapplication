@@ -48,6 +48,15 @@ public class Account implements Serializable{
 	public void setOverdraft(double overdraft) {
 		this.overdraft = overdraft;
 	}
+
+	public String showAccount() {
+		return "Account [account_number=" + account_number + ", balance=" + balance + ", overdraft="
+				+ overdraft + "]";
+	}
+	
+	public String showBalance() {
+		return "Balance = " + balance;
+	}
 	
 	
 }

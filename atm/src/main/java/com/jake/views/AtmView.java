@@ -61,15 +61,25 @@ public class AtmView {
 		System.out.println("-------------------------------------------------");
 		System.out.println("Account Menu");
 		System.out.println("1. Withdraw");
-		System.out.println("2. Deposit");
+//		System.out.println("2. Deposit");
+		System.out.println("3. View Account Details");
+		System.out.println("123. Sign out of Account");
 		int ans = sc.nextInt();
 		
 		switch (ans) {
 		case 1:
 			WithdrawMenu();
 			break;
-		case 2:
-			//DepositMenu();
+//		case 2:
+//			DepositMenu();
+//			break;
+		case 3:
+			System.out.println(accountController.getAccount());
+			AccountMenu();
+			break;
+		case 123:
+			accountController.signOut();
+			startMenu();
 			break;
 		default:
 			System.out.println("PLEASE SELECT A NUMBER OPTION");
@@ -85,7 +95,7 @@ public class AtmView {
 		if(ans % 5 == 0 && ans > 0 ) {
 			if(accountController.checkFunds(ans)) {
 				if(safeController.checkSafe(ans)) {
-					Withdrawing();
+					Withdrawing(ans);
 				}
 				else {
 					System.out.println("Apologies, the ATM Safe doesnt hold sufficient funds!");
@@ -107,32 +117,36 @@ public class AtmView {
 	}
 
 
-	private void Withdrawing() {
-		
-		
+	private void Withdrawing(int ans) {
+		String notes = safeController.getNotes(ans);
+		accountController.takeAwayWithdrawal(ans);
+		System.out.println("Now dispencing: "+ ans);
+		System.out.println(notes);
+		System.out.println("You have "+accountController.getBalance()+" left.");
+		AccountMenu();
 	}
 
 
 	public void devOptions() {
 		System.out.println("Dev Menu");
-		System.out.println("1. Create Account");
+//		System.out.println("1. Create Account");
 		System.out.println("2. View Safe Amounts");
-		System.out.println("3. Edit Safe Amounts");
+//		System.out.println("3. Edit Safe Amounts");
 		
 		System.out.println("123. Back to Main Menu");
 		System.out.println("-------------------------------------------------");
 		int ans = sc.nextInt();
 		
 		switch (ans) {
-		case 1:
-			createAccountMenu();
-			break;
+//		case 1:
+//			createAccountMenu();
+//			break;
 		case 2:
 			viewSafe();
 			break;
-		case 3:
-			devOptions();
-			break;
+//		case 3:
+//			devOptions();
+//			break;
 		case 123:
 			startMenu();
 			break;
