@@ -5,24 +5,26 @@ import com.jake.views.AtmView;
 
 public class AccountController {
 
-	private AtmView view;
 	private AccountService accountService;
 	
-	public AccountController(AtmView view, AccountService accountService) {
-		this.view = view;
+	public AccountController(AccountService accountService) {
 		this.accountService = accountService;
 	}
 
 	public void addAccount(int accNum, int pin, double balance, double overdraft) {
-		if(String.valueOf(accNum).length() != 9) {
-			view.invalidInput();
-		}		
-		else if(String.valueOf(pin).length() != 4) {
-			view.invalidInput();
-		}
-		else {
-			accountService.createAccount(accNum, pin, balance,overdraft);
-		}
+		accountService.createAccount(accNum, pin, balance,overdraft);
+	}
+
+	public boolean isThereAccount(int ans) {
+		return accountService.ExistingAccount(ans);
+	}
+
+	public boolean isPinCorrect(int ans) {
+		return accountService.PinforAccount(ans);
+	}
+
+	public boolean checkFunds(int ans) {
+		return accountService.IsThereAccountFunds(ans);
 	}
 
 }

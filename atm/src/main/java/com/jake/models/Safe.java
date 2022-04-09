@@ -74,6 +74,12 @@ public class Safe {
 	}
 	
 	public String displayTotalSafe() {
-		return "Safe holds = €"+ (twoHundreds*200) + (hundreds*100) + (fiftys*50) + (twentys*20) + (tens*10) + (fives*5);
+		
+		return "Safe holds = €"+ TotalInSafe();
+	}
+	
+	public int TotalInSafe() {
+		int ans = (twoHundreds*200) + (hundreds*100) + (fiftys*50) + (twentys*20) + (tens*10) + (fives*5);
+		return ans;
 	}
 }
