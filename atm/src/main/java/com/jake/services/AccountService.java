@@ -90,5 +90,14 @@ public class AccountService {
 	public String showBalance() {
 		return signedInAccount.showBalance();
 	}
+	
+	public String ApiShowBalance(int accNum) {
+		for(Account account : accounts) {
+			if(account.getAccount_number() == accNum) {
+				return account.showBalance();
+			}
+		}
+		return "invalid account number";
+	}
 
 }

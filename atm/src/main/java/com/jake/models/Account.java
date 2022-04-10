@@ -57,6 +57,14 @@ public class Account implements Serializable{
 	public String showBalance() {
 		return "Balance = " + balance;
 	}
+
+	@Override
+	public String toString() {
+		return "Account [account_number=" + account_number + ", pin=" + pin + ", balance=" + balance + ", overdraft="
+				+ overdraft + "]";
+	}
+	
+	
 	
 	
 }
