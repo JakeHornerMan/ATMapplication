@@ -2,6 +2,9 @@ package com.jake.services;
 
 import com.jake.models.Safe;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class SafeService {
 	
 	private Safe atmSafe = new Safe(10,30,30,20);  

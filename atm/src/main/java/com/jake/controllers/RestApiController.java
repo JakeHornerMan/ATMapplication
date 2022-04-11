@@ -13,21 +13,21 @@ public class RestApiController {
 	
 	private AccountService accountService; 
 	private SafeService safeService;
-
+	
 	public RestApiController(AccountService accountService, SafeService safeService) {
 		this.accountService = accountService;
 		this.safeService = safeService;
 	}
 	
-	@GetMapping(value = "/")
+	@GetMapping(value = "welcome")
 	public String welcome() {
 		return "welcome to atm";
 	}
 		
 	@GetMapping("/accountDetails")
-	public String accountDetails(@RequestParam(value = "accNum", defaultValue = "0") int accNum) {
+	public String accountDetails(@RequestParam(value = "accNum", defaultValue = "0") String accNum) {
 		
-		return accountService.ApiShowBalance(accNum);
+		return accountService.ApiShowBalance(Integer.parseInt(accNum));
 		
 		//return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}

@@ -11,9 +11,16 @@ import com.jake.views.AtmView;
 public class AtmFactory {
 	
 	public static AtmView getAtmView() {
+		setRestApiController();
 		return new AtmView(UtilFactory.getScanner(), getAccountController(), getSafeController());
 	}
 	
+
+	private static RestApiController setRestApiController() {
+		return new RestApiController(getAccountService(), getSafeService());
+	}
+
+
 	private static SafeController getSafeController() {
 		return new SafeController(getSafeService());
 	}

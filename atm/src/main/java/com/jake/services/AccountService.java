@@ -2,9 +2,11 @@ package com.jake.services;
 
 import java.util.List;
 
-import com.jake.dao.Serialization;
+import org.springframework.stereotype.Service;
+
 import com.jake.models.Account;
 
+@Service
 public class AccountService {
 
 	private Account signedInAccount = null;
