@@ -55,7 +55,7 @@ public class Account implements Serializable{
 	}
 	
 	public String showBalance() {
-		return "Balance = " + balance;
+		return "Balance = " + balance + ", Overdraft = " + overdraft;
 	}
 
 	@Override

@@ -15,7 +15,14 @@ public class SafeService {
 
 	public void displaySafe() {
 		System.out.println(atmSafe.toString());
-		System.out.println(atmSafe.displayTotalSafe());	
+		System.out.println(atmSafe.displayTotalSafe());
+	}
+	
+	public String ApiDisplaySafe() {
+		String ans = atmSafe.toString();
+		String ans2 = atmSafe.displayTotalSafe();
+		
+		return ans + "\n" +ans2;
 	}
 
 	public boolean IsThereSufficiantFundsInSafe(int ans) {

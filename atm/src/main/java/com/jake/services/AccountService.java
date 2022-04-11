@@ -71,8 +71,8 @@ public class AccountService {
 			signedInAccount.setBalance(ans);
 		}
 		else {
-			signedInAccount.setBalance(0);
 			double ans = withdraw - signedInAccount.getBalance();
+			signedInAccount.setBalance(0);
 			double ans2 = signedInAccount.getOverdraft() - ans;
 			signedInAccount.setOverdraft(ans2);
 		}
@@ -92,14 +92,60 @@ public class AccountService {
 	public String showBalance() {
 		return signedInAccount.showBalance();
 	}
-	
-	public String ApiShowBalance(int accNum) {
+
+	public String ApiSignIn(int accountNumber, int pin) {
 		for(Account account : accounts) {
-			if(account.getAccount_number() == accNum) {
-				return account.showBalance();
+			if(account.getAccount_number() == accountNumber && account.getPin() == pin) {
+				return "signed in as : " + accountNumber;
 			}
 		}
-		return "invalid account number";
+		return "invalid account number or pin";
+	}
+
+
+	public String ApiShowBalance(int accountNumber, int pin) {
+		for (Account account : accounts) {
+			if(account.getAccount_number() == accountNumber) {
+				if(account.getPin() == pin) {
+					return account.showBalance();
+				}
+			}
+		}
+		return "invalid account number or pin";
+	}
+	
+	public boolean ApiIsThereAccountFunds(int accountNumber, int pin ,int ans) {
+		for (Account account : accounts) {
+			if(account.getAccount_number() == accountNumber) {
+				if(account.getPin() == pin) {
+					double amount = account.getBalance() + account.getOverdraft();
+					if(ans <= amount) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+
+	public void ApiWithdraw(int accountNumber, int pin, int withdraw) {
+		for (Account account : accounts) {
+			if(account.getAccount_number() == accountNumber) {
+				if(account.getPin() == pin) {
+					if(withdraw <= account.getBalance()) {
+						double ans = account.getBalance() - withdraw;
+						account.setBalance(ans);
+					}
+					else {
+						double ans = withdraw - account.getBalance();
+						account.setBalance(0);
+						double ans2 = account.getOverdraft() - ans;
+						account.setOverdraft(ans2);
+					}
+				}
+			}
+		}
 	}
 
 }

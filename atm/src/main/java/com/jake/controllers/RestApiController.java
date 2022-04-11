@@ -1,6 +1,9 @@
 package com.jake.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,15 +26,38 @@ public class RestApiController {
 	public String welcome() {
 		return "welcome to atm";
 	}
-		
-	@GetMapping("/accountDetails")
-	public String accountDetails(@RequestParam(value = "accNum", defaultValue = "0") String accNum) {
-		
-		return accountService.ApiShowBalance(Integer.parseInt(accNum));
-		
-		//return new Greeting(counter.incrementAndGet(), String.format(template, name));
+	
+	@RequestMapping(path = "/atm/safe", method = RequestMethod.GET)
+	public String showsafe() {
+		return safeService.ApiDisplaySafe();
 	}
 	
+	@RequestMapping(path = "/atm/{accountNumber}/{pin}", method = RequestMethod.GET)
+	public String signin(@PathVariable int accountNumber, @PathVariable int pin) {
+		return accountService.ApiSignIn(accountNumber,pin);
+	}
 	
+	@RequestMapping(path = "/atm/{accountNumber}/{pin}/balance", method = RequestMethod.GET)
+	public String accountDetails(@PathVariable int accountNumber, @PathVariable int pin) {
+		return accountService.ApiShowBalance(accountNumber, pin);
+	}
+	
+	@RequestMapping(path = "/atm/{accountNumber}/{pin}/withdraw/{withdraw}", method = RequestMethod.GET)
+	public String withdraw(@PathVariable int accountNumber, @PathVariable int pin, @PathVariable int withdraw) {
+		
+		if(accountService.ApiIsThereAccountFunds(accountNumber,pin,withdraw) == true) {
+			if(safeService.IsThereSufficiantFundsInSafe(withdraw)) {
+				accountService.ApiWithdraw(accountNumber,pin,withdraw);
+				String ans= safeService.calulateNotes(withdraw);
+				return ans + " Totaling: " + withdraw;
+			}
+			else {
+				return "there is no sufficiant funds in safe";
+			}
+		}
+		else {
+			return "no avaliable funds in account"; 
+		}
+	}
 	
 }
