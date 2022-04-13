@@ -1,3 +1,13 @@
+1. change directory to location of the atm project
+2. run 'docker build -t atm-docker.jar .' to create a docker image
+3. run 'docker run -p 9090:8080 atm-docker.jar' to start the container 
+
+API Calls 
+localhost:9090/atm/safe - display safe amounts 
+localhost:9090/atm/{accountNumber}/{pin} - account sign in
+localhost:9090/atm/{accountNumber}/{pin}/balance - account balance
+localhost:9090/atm/{accountNumber}/{pin}/withdraw/{withdrawAmount} - withdraw fund from account
+
 # ATMapplication 
 We all know how ATM machines work… don’t we? You are tasked with developing software for one that: 
 - should initialize with the following accounts: 

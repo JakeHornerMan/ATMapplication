@@ -22,7 +22,7 @@ public class RestApiController {
 		this.safeService = safeService;
 	}
 	
-	@GetMapping(value = "welcome")
+	@GetMapping(value = "/")
 	public String welcome() {
 		return "welcome to atm";
 	}
