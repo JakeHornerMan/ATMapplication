@@ -1,18 +1,27 @@
 package com.jake.services;
 
 import com.jake.models.Safe;
+import com.jake.repos.SafeRepository;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SafeService {
 	
-	private Safe atmSafe = new Safe(10,30,30,20);  
+	@Autowired
+	private SafeRepository safeRepo;
 	
-	//Safe s = getBean(Safe.class);
+	private Safe atmSafe;// = new Safe(10,30,30,20);  
 	
-	public SafeService() {
-		
+//	public SafeService() {
+//		
+//	}
+	
+	public Optional<Safe> getSafe() {
+		return safeRepo.findById(1);
 	}
 
 	public void displaySafe() {

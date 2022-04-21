@@ -1,22 +1,41 @@
 package com.jake.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import org.springframework.stereotype.Component;
 
-//@Component
+@Entity
 public class Safe {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	public int id;
 	public int fiftys;
 	public int twentys;
 	public int tens;
 	public int fives;
 	
-	public Safe(int fiftys, int twentys, int tens, int fives) {
+	public Safe() {}
+	
+	public Safe(int id, int fiftys, int twentys, int tens, int fives) {
 		super();
 		this.fiftys = fiftys;
 		this.twentys = twentys;
 		this.tens = tens;
 		this.fives = fives;
 		System.out.println("Safe created!");
+	}
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getFiftys() {

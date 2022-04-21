@@ -1,0 +1,2 @@
+INSERT INTO account (account_number, balance, overdraft, pin) VALUES (123456789, 800, 200, 1234);
+INSERT INTO safe (fiftys, twentys, tens, fives) VALUES (10,30,30,20);
